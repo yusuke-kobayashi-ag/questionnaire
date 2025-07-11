@@ -54,10 +54,15 @@ export async function GET() {
       }
     }
 
-    // 環境変数確認
+    // 環境変数確認（一時的にデバッグ用）
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    
     results.environment = {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ? '設定済み' : '未設定',
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '設定済み' : '未設定'
+      supabaseUrl: url ? `${url.substring(0, 30)}...` : '未設定',
+      supabaseKey: key ? `${key.substring(0, 30)}...` : '未設定',
+      urlFull: url || 'なし',
+      keyFull: key ? `${key.substring(0, 50)}...` : 'なし'
     }
 
     console.log('✅ データベース状態確認完了')

@@ -1,6 +1,9 @@
 import { surveyOperations } from '@/lib/database'
 import Link from 'next/link'
 
+// 静的生成をスキップして動的レンダリングを強制
+export const dynamic = 'force-dynamic'
+
 export default async function SurveysPage() {
   const surveys = await surveyOperations.findMany({ where: { isActive: true } })
 
